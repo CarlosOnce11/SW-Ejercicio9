@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Objetos</title>
+	<script type="text/javascript">
+		//declarando objeto...
+		  //la forma mas cencilla es usar notacion literal---
+		    //el objeto se declara como c hace en una variable utilizandp la palabra clave "var"...
+
+		/*propiedad y metodo se introduce en "{Nombre de la variable: "dato que le otorgas"}"...dentro de {} se pone "," para separar las declaraciones...*/
+
+		var miobjeto = {
+			nombre:"juan",
+			edad:30
+		};
+
+		/*para acceder a los valores usamos el nombre del objeto al que pertenece usando notacionde puntos o corchetes...[]-> para acceder a su valor de la variable...*/
+
+		var mensaje = "mi nombre es: "+miobjeto.nombre+"\r\n";
+		mensaje+="Tengo: "+miobjeto["edad"]+"años";
+		alert(mensaje);
+        
+        //utilizar funcion el objetos...
+		var objeto = {
+            nombre: "juan",
+            edad: 20,
+            mostrardatos: function() {
+                var mensaje = "Nombre: " + objeto.nombre + "\r\n";
+                mensaje += "Edad: " + objeto.edad;
+                alert(mensaje);
+            },
+            cambiarnombre: function(nombrenuevo) {
+            objeto.nombre = nombrenuevo;
+            }
+        };
+        objeto.mostrardatos(); // "Nombre: juan Edad: 30"
+        objeto.cambiarnombre("jose");
+        objeto.mostrardatos(); 
+
+        //metodos devuelven tambien valores...
+
+        var object={
+   	        nombre:"juan",
+   	        edad:30,
+   	        mostrardatos:function(){
+   		        var mensajes = "nombre: "+object.nombre+"\r\n";
+   		        mensajes +="Edad: "+object.edad;
+   		        alert(mensajes);
+   	        },
+   	        cambiarnombre:function(nombrenuevo){
+   		        var nombreviejo = object.nombre;
+   		        object.nombre = nombrenuevo;
+   		        return nombreviejo;
+   	        }
+        };
+        var anterior = object.cambiarnombre("aro");
+
+        //palabra clave this(esto)...
+
+        var miobjeto = {
+    	    nombre:"juan",
+    	    edad:30,
+    	    mostratdatos:function(){
+    		    var mensaje = "Nombre: "+this.nombre+"\r\n";
+    		    mensaje += "Edad: "+this.edad;
+    	    },
+    	    cambiarnombre:function(nombrenuevo){
+    		    var nombreviejo = this.nombre;
+    		    this.nombre = nombrenuevo;
+    		    return nombreviejo;
+    	    }
+        };
+
+        var anterior = miobjeto.cambiarnombre("jose");
+        alert("El nombre anterior era: "+anterior);
+
+        //contructores...
+
+        var constructor = function(){
+    	    var obj = {
+    		    nombre:"juan",
+    		    edad:30,
+    		    mostrarnombre: function(){
+    			    alert(this.nombre);
+    		    },
+    		    cambiarnombre: function(nuevonombre){
+    			    this.nombre = nuevonombre;
+    		    }
+    	    };
+    	    return obj;
+        };
+        var empleado = constructor();
+        empleado.mostrarnombre();//"juan"
+ 
+        
+
+        //enviar valores iniciales al constructor
+
+        var constructor = function(nombreinicial){
+    	    var obj = {
+    		    nombre: nombreinicial,
+    		    edad:30,
+    		    mostrarnombre: function(){
+    			    alert(this.nombre);
+    		    },
+    		    cambiarnombre: function(nombrenuevo){
+    			    this.nombre = nombrenuevo;
+    		    }
+    	    };
+    	    return obj;
+        };
+        var empleado2 = constructor("yobani");
+        empleado2.mostrarnombre();//juan
+
+        //crear multiples objetos con el mismo constructor...
+
+        var constructor = function(nombreinicial){
+    	    var obj={
+    		    nombre:nombreinicial,
+    		    edad:30,
+    		    mostrarnombre: function(){
+    			    alert(this.nombre);
+    		    },
+    		    cambiarnombre: function(nombrenuevo){
+    			    this.nombrenuevo;
+    		    }
+    	    };
+    	    return obj;
+        };
+        var empleado1 = constructor("aron");
+        var empleado2 = constructor("roberto");
+        var empleado3 = constructor("Arturo");
+        alert(empleado1.nombre+","+empleado2.nombre+","+empleado3.nombre);
+
+        //en este metodo se hara lo mismo que en el anterior de arriba pero esta vez declararemos nombre y edad como variables de la funcion que esta devolviendo el obj... volverlos privados usando una técnica llamada closure.
+
+        var constructor = function(){
+    	    var nombre = "edgar";
+    	    var edad = 20;
+    	    var obj = {
+    		    mostrarnombre: function(){
+    			    alert(nombre);
+    		    },
+    		    cambiarnombre: function(nombrenuevo){
+    			    nombre = nombrenuevo;
+    		    }
+    		};
+    	    return obj;
+        };
+        var empleadoo = constructor();
+        empleadoo.mostrarnombre();//edgar
+
+        // operador new
+        function YouObjeto() {
+            this.nombre = "carrillo";
+            this.edad = 30;
+            this.mostrarnombre = function(){
+                alert(this.nombre);
+            };
+            this.cambiarnombre = function(nombrenuevo){
+                this.nombre = nombrenuevo;
+            }
+        };
+        var empleado = new YouObjeto();
+        empleado.mostrarnombre(); //carrillo
+
+        //
+        function MiObjeto(nombreinicial, edadinicial){
+            this.nombre = nombreinicial;
+            this.edad = edadinicial;
+            this.mostrarnombre = function(){
+                alert(this.nombre);
+            };
+            this.cambiarnombre = function(nombrenuevo){
+                this.nombre = nombrenuevo;
+            }
+        };
+        var empl3ado = new MiObjeto("Angel", 55);
+        empl3ado.mostrarnombre(); //Angel
+    </script>
+</head>
+<body>
+	<h2>OBJETOS EN JAVASCRIPT-HTML</h2>
+
+	<p>Los objetos son estructuras de información capaces de contener variables (llamadas propiedades), así como funciones (llamadas métodos).<br>son programas independientes que se comunican entre sí para realizar tareas comunes. Por ejemplo, podemos crear un objeto que controla<br> un
+    botón, muestra su título, y realiza una tarea cuando se pulsa el botón</p>
+
+	<p>Un objeto se crea similar a una variable escriviendo el valor var + el nombre del objeto...la propiedad y metodo de dicho objeto se introduce <br>dentro de {} y si se escribe varias declaraciones se le escribe "," despues de cada decalracion...</p>
+	<p>
+		var miobjeto = {<br>
+		nombre: "juan",<br>
+		edad:30<br>
+	    };
+    </p>
+	<p>para acceder a los valores tendremos que crear una variable donde alojaremos las propiedades del objeto ya que no podremos acceder a sus<br> valores para ello tendremos que especificar el nombre de el objeto al que pertenece usando corchetes ["propiedad"]</p>
+	<p>
+		var mensaje = "mi nombre es:"+miobjeto.nombre+"\r\n";<br>
+		mensaje += "tengo:"+ miobjeto["edad"]+"años";
+	</p>
+	</p>
+	<p>Ejemplo</p>
+	<button onclick="alert(mensaje);">click</button>
+
+	<h2>los objetos pueden incluir funciones...</h2>
+
+	<p>funciones dentro de objetos se les da el nombre de metodos y estas pueden contener las misma sintaxis de la propiedad y podemos accesar a <br>ellas mediante el nombre del objeto y pondremos un punto para indicar que accederemos a una funcion dentro de ella como se ve en este ejemplo:
+	<br/>
+
+    var miobjeto = {<br>
+     nombre: "Juan",<br>
+     edad: 20,<br>
+     mostrardatos: function() {<br>
+        var mensaje = "Nombre: " + miobjeto.nombre + "\r\n";<br>
+        mensaje += "Edad: " + miobjeto.edad;<br>
+        alert(mensaje);<br>
+     },<br>
+     cambiarnombre: function(nombrenuevo) {<br>
+        miobjeto.nombre = nombrenuevo;<br>
+     }<br>
+    };<br>
+    miobjeto.mostrardatos();<br>
+    miobjeto.cambiarnombre("José");<br>
+    miobjeto.mostrardatos(); 
+    <br/>ejemplo:
+	</p>
+	<button onclick="objeto.mostrardatos();">click</button>
+
+	<h2>metodos que devuelven valores...</h2>
+	<p> 
+		var miobjeto = {<br>
+            nombre: “Juan”,<br>
+            edad: 30,<br>
+            mostrardatos: function() {<br>
+                var mensaje = “Nombre: “ + miobjeto.nombre + “\r\n”;<br>
+                mensaje += “Edad: “ + miobjeto.edad;<br>
+                alert(mensaje);<br>
+            },<br>
+            cambiarnombre: function(nombrenuevo) {<br>
+                var nombreviejo = miobjeto.nombre;<br>
+                miobjeto.nombre = nombrenuevo;<br>
+                return nombreviejo;<br>
+            }<br>
+        };<br>
+        var anterior = miobjeto.cambiarnombre("aro");
+	</p>
+	<button onclick="object.mostrardatos();">click</button>
+
+	<h2>palabra clave this</h2>
+
+	<p>mencionamos el nombre del objeto cada vez que modificamos las propiedades desde el metodo para ello mejor usaremos this para <br>referirnos al nombre de el objeto sin tener que mencionarlo sino refiriendonos a el...esto solo funciona dentro del mismo y no fuera <br>de ello porque englobaria a todo el metodo en si...</p>
+	<p>
+		var miobjeto = {<br>
+            nombre: “Juan”,<br>
+            edad: 30,<br>
+            mostrardatos: function() {<br>
+                var mensaje = “Nombre: “ + this.nombre + “\r\n”;<br>
+                mensaje += “Edad: “ + this.edad;<br>
+            },<br>
+            cambiarnombre: function(nombrenuevo) {<br>
+                var nombreviejo = this.nombre;<br>
+                this.nombre = nombrenuevo;<br>
+                return nombreviejo;<br>
+            } <br>
+        };<br>
+        var anterior = miobjeto.cambiarnombre("jose");<br>
+        alert(“El nombre anterior era: “ + anterior);<br>
+	</p>
+	<button onclick="alert('El nombre anterior era: '+anterior);">click</button>
+
+	<h2>constructores</h2>
+	<p>
+		Si queremos crear copias de estos objetos con las mismas propiedades y métodos, tenemos que usar constructores. Un constructor es una <br>función anónima que define un nuevo objeto y lo devuelve, creando copias del objeto (también llamadas instancias), cada una con sus propias <br>propiedades, métodos y valores. 
+	</p>
+	<p>
+		var constructor = function() {<br>
+            var obj = {<br>
+                nombre: “carrillo”,<br>
+                edad: 30,<br>
+                mostrarnombre: function() {<br>
+                    alert(this.nombre);<br>
+                },<br>
+                cambiarnombre: function(nombrenuevo) {<br>
+                    this.nombre = nombrenuevo;<br>
+                }<br>
+            };<br>
+            return obj;<br>
+        };<br>
+        var empleado = constructor();<br>
+        empleado.mostrarnombre()<br>
+	</p><p> se asigna una función anónima a la variable constructor. Dentro de la función, se crea un objeto y se devuelve mediante la instrucción <br>return. Finalmente, el objeto que devuelve la función se almacena en la variable empleado y se ejecuta su método mostrarnombre()</p>
+
+	<button onclick="empleado.mostrarnombre();">click</button>
+
+	<h2>enviar valores iniciales al constructor</h2>
+	<p>var constructor = function(nombreinicial) {<br>
+            var obj = {<br>
+                nombre: nombreinicial,<br>
+                edad: 30,<br>
+                mostrarnombre: function() {<br>
+                    alert(this.nombre);<br>
+                },<br>
+                cambiarnombre: function(nombrenuevo) {<br>
+                    this.nombre = nombrenuevo;<br>
+                }<br>
+            };<br>
+            return obj;<br>
+        };<br>
+        var empleado = constructor(“roberto”);<br>
+        empleado.mostrarnombre(); // “roberto”</p>
+
+	<button onclick=" empleado2.mostrarnombre();">click</button>
+
+	<h2>crear multiples objetos con el mismo constructor...</h2>
+
+	<p>un constructor nos sirve para crear objetos sin tener que tener que escribir codigo por cada objeto, nos facilita <br>la forma de crear objetos con ciertas propiedades...</p>
+	<p>
+		var constructor = function(nombreinicial) {<br>
+            var obj = {<br>
+                nombre: nombreinicial,<br>
+                edad: 30,<br>
+                mostrarnombre: function() {<br>
+                    alert(this.nombre);<br>
+                },<br>
+                cambiarnombre: function(nombrenuevo) {<br>
+                    this.nombre = nombrenuevo;<br>
+                } <br>
+            };<br>
+            return obj;<br>
+        };<br>
+        var empleado1 = constructor(“aro”);<br>
+        var empleado2 = constructor(“Roberto”);<br>
+        var empleado3 = constructor(“Arturo”);<br>
+        alert(empleado1.nombre + “, “ + empleado2.nombre + “, “ +
+        empleado3.nombre);
+	</p>
+	<button onclick="alert(empleado1.nombre+','+empleado2.nombre+','+empleado3.nombre);
+    ">click</button>
+
+	<h2> convirtiendo en privado la funcion con la tecnica closure.</h2>
+	<p>
+		para crear constructores tenemos la posibilidad de definir si sera privada o no eso sera nuestra decicion ya que la ventaja de hacer<br> privado un constructor es que esta se puede modificar desde el mismo y no de las copias que se ace...
+	</p>
+	<p>
+		var constructor = function() {<br>
+            var nombre = “edgar”;<br>
+            var edad = 30;<br><br>
+            var obj = {<br>
+                mostrarnombre: function() {<br>
+                    alert(nombre);<br>
+                },<br>
+                cambiarnombre: function(nombrenuevo) {<br>
+                    nombre = nombrenuevo;<br>
+                } <br>
+            };<br>
+            return obj;<br>
+        };<br>
+        var empleado = constructor();<br>
+        empleado.mostrarnombre();
+	</p>
+	<p>declaramos variables dentro de la funcion que esta devolviendo el objeto, el objeto devuelto recordara las <br>variables pero el unico tendra acceso a ella...</p>
+	<button onclick="empleadoo.mostrarnombre();">click</button>
+
+	<h2> operador new</h2>
+	<p>esta es la tercera alternativa que nos brinda js para crear multiples objetos basados en una misma definicion... Se trata de una <br>clase especial de constructor que trabaja con un operador llamado new (nuevo). El objeto se define<br> mediante una función y luego se llama con el operador new para crear un objeto a partir de esa definición. </p>
+	<p>
+		function MiObjeto() {<br>
+            this.nombre = “carrillo”;<br>
+            this.edad = 30;<br>
+            this.mostrarnombre = function(){<br>
+                alert(this.nombre);<br>
+            };<br>
+            this.cambiarnombre = function(nombrenuevo){<br>
+                this.nombre = nombrenuevo;<br>
+            };<br>
+        }<br>
+        var empleado = new MiObjeto();<br>
+        empleado.mostrarnombre();
+	</p>
+	<button onclick="empleado.mostrarnombre();">click</button>
+
+	<h2>proveer valores iniciales,</h2>
+	<p>
+		function MiObjeto(nombreinicial, edadinicial){<br>
+            this.nombre = nombreinicial;<br>
+            this.edad = edadinicial;<br>
+            this.mostrarnombre = function(){<br>
+                alert(this.nombre);<br>
+            };<br>
+            this.cambiarnombre = function(nombrenuevo){<br>
+                this.nombre = nombrenuevo;<br>
+            };<br>
+        }<br>
+        var empleado = new MiObjeto(“Angel”, 55);<br>
+        empleado.mostrarnombre(); <br>
+	</p>
+	<p>se le escribe los valores que tendra las propiedades del constructor...</p>
+	<button onclick="empl3ado.mostrarnombre();">click</button>
+
+   
+</body>
+</html>
